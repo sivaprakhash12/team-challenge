@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Gift Details & Customization Studio — GIFT ZONE</title>
+    <meta name="description"
+        content="Customize your handpicked gifts with personalized wrapping, ribbons, and custom card messages at GIFT ZONE.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Confetti JS -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* ==========================================================================
+           GIFT ZONE — Gift Details & Customization Studio (Unified Glassmorphism Theme)
+           ========================================================================== */
+
+        :root {
+            --bg-dark: #070510;
+            --bg-card: rgba(22, 16, 48, 0.75);
+            --bg-card-hover: rgba(36, 26, 78, 0.96);
+            --border-glass: rgba(255, 255, 255, 0.16);
+
+            --primary-magenta: #ff2a7a;
+            --primary-violet: #8b5cf6;
+            --primary-cyan: #06b6d4;
+            --accent-gold: #ffd700;
+            --accent-green: #4ade80;
+
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Outfit', sans-serif;
+
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --radius-xl: 40px;
+
+            --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --shadow-glow: 0 0 50px rgba(139, 92, 246, 0.45);
+            --shadow-gold: 0 0 40px rgba(255, 215, 0, 0.45);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.38) 0%, transparent 45%),
+                radial-gradient(circle at 85% 65%, rgba(255, 42, 122, 0.32) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.28) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ambient Bokeh Background Orbs */
+        .bokeh-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+            animation: orbFloat 14s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            top: -100px;
+            left: -100px;
+            width: 450px;
+            height: 450px;
+            background: rgba(139, 92, 246, 0.4);
+        }
+
+        .orb-2 {
+            bottom: -150px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 42, 122, 0.35);
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(60px, 40px) scale(1.15);
+            }
+        }
+
+        /* Particle Canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.85;
+        }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, #8b5cf6, #ff2a7a, #06b6d4, #ffd700, #8b5cf6);
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+            color: #fff;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Header Navigation */
+        .navbar-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7, 5, 16, 0.88);
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-icon-wrap {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(255, 42, 122, 0.35), rgba(139, 92, 246, 0.45));
+            border-radius: 14px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo:hover .logo-icon-wrap {
+            transform: scale(1.1) rotate(6deg);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .logo-emoji {
+            font-size: 1.7rem;
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+
+        @keyframes floatEmoji {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-4px) rotate(6deg);
+            }
+        }
+
+        .brand-name {
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #fff, var(--accent-gold), #ff758c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-tagline {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Search Box */
+        .nav-search-container {
+            position: relative;
+            flex: 1;
+            max-width: 380px;
+        }
+
+        .search-box-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-xl);
+            padding: 8px 18px;
+            transition: var(--transition-normal);
+        }
+
+        .search-box-wrapper:focus-within {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+        }
+
+        .search-icon {
+            color: var(--accent-gold);
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .search-box-wrapper input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+        }
+
+        .search-box-wrapper input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Nav Menu */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.98rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: var(--radius-xl);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-gold);
+            background: rgba(255, 215, 0, 0.12);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--accent-gold), #ff8c00);
+            color: #0c0919;
+            font-weight: 800;
+            box-shadow: var(--shadow-gold);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 45px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Page Header Title */
+        .page-header {
+            text-align: center;
+            padding: 40px 15px 25px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(120deg, var(--accent-gold) 0%, #ffffff 40%, var(--accent-gold) 60%, var(--primary-magenta) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShine 5s linear infinite;
+        }
+
+        @keyframes goldShine {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+        }
+
+        /* Top Bar Controls */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            padding: 16px 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-glass);
+        }
+
+        .stats-badges {
+            display: flex;
+            gap: 15px;
+        }
+
+        .badge-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-glass);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .badge-btn:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .badge-counter {
+            background: var(--primary-magenta);
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        /* 10 Gifts Catalog Grid */
+        .catalog-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 22px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 1100px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gift-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            border: 1.5px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gift-card:hover,
+        .gift-card.active-card {
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--accent-gold);
+            background: var(--bg-card-hover);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.45), 0 0 25px rgba(255, 215, 0, 0.35);
+        }
+
+        .gift-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(7, 5, 16, 0.85);
+            color: var(--accent-gold);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            z-index: 2;
+        }
+
+        .card-img-box {
+            width: 100%;
+            height: 160px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin-bottom: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .card-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gift-card:hover .card-img-box img {
+            transform: scale(1.1);
+        }
+
+        .card-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+        }
+
+        .card-select-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-gold), #ff8c00);
+            border: none;
+            color: #0c0919;
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .gift-card:hover .card-select-btn,
+        .gift-card.active-card .card-select-btn {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* MAGICAL CUSTOMIZATION STUDIO PANEL */
+        .studio-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(25px);
+            border: 2px solid var(--accent-gold);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: 0 0 80px rgba(139, 92, 246, 0.35);
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .studio-layout {
+            display: flex;
+            gap: 45px;
+            flex-wrap: wrap;
+        }
+
+        .preview-col {
+            flex: 1;
+            min-width: 320px;
+            text-align: center;
+        }
+
+        .main-img-wrapper {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 45px rgba(255, 215, 0, 0.4);
+            border: 2px solid var(--accent-gold);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .main-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .ribbon-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+            z-index: 5;
+        }
+
+        .ribbon-overlay.active {
+            display: block;
+        }
+
+        .ribbon-cross-v {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 36px;
+            height: 100%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #ff2a7a, #ffd700, #ff2a7a);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+
+        .ribbon-cross-h {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 36px;
+            transform: translateY(-50%);
+            background: linear-gradient(180deg, #ff2a7a, #ffd700, #ff2a7a);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+
+        .ribbon-bow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 70px;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.9));
+            animation: bowPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes bowPulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .message-card-preview {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #0c0919;
+            padding: 18px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            font-family: var(--font-heading);
+            font-style: italic;
+            position: relative;
+            border-left: 5px solid var(--accent-gold);
+            text-align: left;
+        }
+
+        .message-card-preview::before {
+            content: "💌 Personal Card Message:";
+            display: block;
+            font-family: var(--font-body);
+            font-style: normal;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--primary-magenta);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .control-col {
+            flex: 1.2;
+            min-width: 320px;
+        }
+
+        .gift-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .gift-title {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .rating-pill {
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: var(--accent-gold);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .price-tag {
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            margin-bottom: 25px;
+        }
+
+        .field-group {
+            margin-bottom: 22px;
+        }
+
+        .field-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        select.magic-select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+            background: rgba(15, 12, 32, 0.85);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        select.magic-select:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+        }
+
+        .wrap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .wrap-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-sm);
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .wrap-card:hover,
+        .wrap-card.active {
+            border-color: var(--accent-gold);
+            background: rgba(255, 215, 0, 0.15);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .wrap-icon {
+            font-size: 1.6rem;
+            margin-bottom: 4px;
+        }
+
+        .wrap-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .wrap-price {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            font-weight: 800;
+        }
+
+        textarea.magic-textarea {
+            width: 100%;
+            height: 95px;
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+            background: rgba(15, 12, 32, 0.85);
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            resize: none;
+            transition: all 0.3s;
+        }
+
+        textarea.magic-textarea:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+        }
+
+        .stepper-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 18px 22px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-glass);
+            margin-bottom: 25px;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .stepper-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .stepper-btn:hover {
+            background: var(--accent-gold);
+            color: #0c0919;
+        }
+
+        .stepper-val {
+            font-size: 1.2rem;
+            font-weight: 800;
+            width: 30px;
+            text-align: center;
+        }
+
+        .total-box {
+            text-align: right;
+        }
+
+        .total-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .total-amount {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-wishlist,
+        .btn-order {
+            padding: 16px 24px;
+            border-radius: var(--radius-md);
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .btn-wishlist {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-glass);
+            color: var(--primary-magenta);
+        }
+
+        .btn-wishlist:hover {
+            background: rgba(255, 42, 122, 0.2);
+            border-color: var(--primary-magenta);
+            transform: translateY(-2px);
+        }
+
+        .btn-order {
+            flex: 2;
+            background: linear-gradient(135deg, var(--accent-gold), #ff8c00, var(--primary-magenta));
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            color: #0c0919;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-order:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Order Success Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 3, 15, 0.92);
+            backdrop-filter: blur(25px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: linear-gradient(145deg, rgba(28, 20, 60, 0.98), rgba(16, 12, 38, 0.98));
+            border: 2px solid var(--accent-gold);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 80px rgba(255, 215, 0, 0.6);
+            transform: scale(0.85);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 4.5rem;
+            margin-bottom: 12px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .modal-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-close-btn {
+            background: linear-gradient(135deg, var(--accent-gold), #ff8c00);
+            color: #0c0919;
+            border: none;
+            padding: 14px 34px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Site Footer */
+        .site-footer {
+            margin-top: auto;
+            background: #040309;
+            border-top: 1px solid var(--border-glass);
+            padding: 35px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Glowing Bokeh Orbs -->
+    <div class="bokeh-orb orb-1"></div>
+    <div class="bokeh-orb orb-2"></div>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <span>✨ <strong>Welcome to GIFT ZONE:</strong> Express Midnight Delivery & Free Luxury Gift Wrapping!</span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar-header">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-icon-wrap">
+                    <span class="logo-emoji">🎁</span>
+                </div>
+                <div>
+                    <span class="brand-name">GIFT ZONE</span>
+                    <span class="brand-tagline">PERFECT GIFTS, EVERY TIME</span>
+                </div>
+            </a>
+
+            <!-- Search Box -->
+            <div class="nav-search-container">
+                <div class="search-box-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search gifts..." oninput="filterGifts()"
+                        autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="gift.html" class="nav-link"><i class="fa-solid fa-gift"></i> Gift</a>
+                <a href="details.html" class="nav-link active"><i class="fa-solid fa-wand-magic-sparkles"></i> Gift
+                    Details</a>
+            </nav>
+
+            <a href="gift.html" class="btn-gradient">
+                <span>Explore Gifts</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Page Title Header -->
+    <section class="page-header">
+        <h1>✨ Magical Gift Studio</h1>
+        <p>Customize handpicked gifts with personalized wrapping and message cards</p>
+    </section>
+
+    <div class="container">
+
+        <!-- Top Controls & Badges -->
+        <div class="top-bar">
+            <div class="stats-badges">
+                <div class="badge-btn" onclick="filterCategory('all')">
+                    🎁 All Gifts <span class="badge-counter">10</span>
+                </div>
+                <div class="badge-btn" onclick="addWishlist()">
+                    ❤️ Wishlist <span class="badge-counter" id="wishlistCount">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. 10 Product Catalog Grid -->
+        <div class="catalog-section">
+            <div class="section-title">
+                <span>🛍️ Select a Product to Customize</span>
+            </div>
+
+            <div class="grid-container" id="gridContainer">
+
+                <!-- 1. Gift Box -->
+                <div class="gift-card active-card" id="card-0" onclick="selectCard(0)">
+                    <div class="gift-tag">⭐ Best Seller</div>
+                    <div class="card-img-box">
+                        <img src="https://5.imimg.com/data5/AB/WY/MY-14108330/gift-boxes.jpg" alt="Gift Box"
+                            onerror="handleImageError(this, '🎁')">
+                    </div>
+                    <div class="card-name">Gift Box</div>
+                    <div class="card-price">₹499</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 2. Teddy Bear -->
+                <div class="gift-card" id="card-1" onclick="selectCard(1)">
+                    <div class="gift-tag">🧸 Cute Pick</div>
+                    <div class="card-img-box">
+                        <img src="https://static.semrush.com/contentshake/articles/ai-images/7e8038ec-ae92-4feb-ad57-5ad02103d156/5fc2439b-4f69-4ba6-b6d1-29a0fd8a990f"
+                            alt="Teddy Bear" onerror="handleImageError(this, '🧸')">
+                    </div>
+                    <div class="card-name">Teddy Bear</div>
+                    <div class="card-price">₹699</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 3. Smart Watch -->
+                <div class="gift-card" id="card-2" onclick="selectCard(2)">
+                    <div class="gift-tag">⚡ Tech Choice</div>
+                    <div class="card-img-box">
+                        <img src="https://percdn.com/f/298540/bzR6WmFuTXorNjQrTm53Z1RvTnE/p/64c1af82acd13-25837-1.webp"
+                            alt="Smart Watch" onerror="handleImageError(this, '⌚')">
+                    </div>
+                    <div class="card-name">Smart Watch</div>
+                    <div class="card-price">₹1,299</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 4. Jewellery -->
+                <div class="gift-card" id="card-3" onclick="selectCard(3)">
+                    <div class="gift-tag">💎 Luxury</div>
+                    <div class="card-img-box">
+                        <img src="https://gennarojewelers.com/cdn/shop/collections/gifts-collection.png?v=1764691741&width=535"
+                            alt="Jewellery" onerror="handleImageError(this, '💍')">
+                    </div>
+                    <div class="card-name">Jewellery</div>
+                    <div class="card-price">₹999</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 5. Chocolate Box -->
+                <div class="gift-card" id="card-4" onclick="selectCard(4)">
+                    <div class="gift-tag">🍫 Delicious</div>
+                    <div class="card-img-box">
+                        <img src="https://www.thanksflowers.com/cdn/shop/files/Chocolates_cec25a4c-1150-471a-8cf9-77ba0dc13652.png?v=1745520405"
+                            alt="Chocolate Box" onerror="handleImageError(this, '🍫')">
+                    </div>
+                    <div class="card-name">Chocolate Box</div>
+                    <div class="card-price">₹399</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 6. Flower Bouquet -->
+                <div class="gift-card" id="card-5" onclick="selectCard(5)">
+                    <div class="gift-tag">💐 Romantic</div>
+                    <div class="card-img-box">
+                        <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364" alt="Flower Bouquet"
+                            onerror="handleImageError(this, '💐')">
+                    </div>
+                    <div class="card-name">Flower Bouquet</div>
+                    <div class="card-price">₹599</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 7. Birthday Gift -->
+                <div class="gift-card" id="card-6" onclick="selectCard(6)">
+                    <div class="gift-tag">🎉 Festive</div>
+                    <div class="card-img-box">
+                        <img src="https://static.smartgiftsolutions.co.uk/cdn/shop/files/Luxury_Birthday_Gift_Box.jpg"
+                            alt="Birthday Gift" onerror="handleImageError(this, '🎉')">
+                    </div>
+                    <div class="card-name">Birthday Gift</div>
+                    <div class="card-price">₹799</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 8. Camera -->
+                <div class="gift-card" id="card-7" onclick="selectCard(7)">
+                    <div class="gift-tag">📷 Premium</div>
+                    <div class="card-img-box">
+                        <img src="https://media.infshop.ie/1941189-large_default/inf-dc218t-4k-dual-lens-touchscreen-hd-camera.webp"
+                            alt="Camera" onerror="handleImageError(this, '📷')">
+                    </div>
+                    <div class="card-name">Camera</div>
+                    <div class="card-price">₹2,499</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 9. Perfume -->
+                <div class="gift-card" id="card-8" onclick="selectCard(8)">
+                    <div class="gift-tag">🧴 Fragrance</div>
+                    <div class="card-img-box">
+                        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601" alt="Perfume"
+                            onerror="handleImageError(this, '🧴')">
+                    </div>
+                    <div class="card-name">Perfume</div>
+                    <div class="card-price">₹899</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+                <!-- 10. Classic Watch -->
+                <div class="gift-card" id="card-9" onclick="selectCard(9)">
+                    <div class="gift-tag">⌚ Elegant</div>
+                    <div class="card-img-box">
+                        <img src="https://setare.com/files/2025/10/b7aad762-5ad0-4164-bc73-e1019a16d668.jpg"
+                            alt="Classic Watch" onerror="handleImageError(this, '⌚')">
+                    </div>
+                    <div class="card-name">Classic Watch</div>
+                    <div class="card-price">₹1,599</div>
+                    <button class="card-select-btn">✨ Select & Customize</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 2. Magical Customization Studio Container -->
+        <div class="studio-container" id="studioPanel">
+            <div class="studio-layout">
+
+                <!-- Left Preview Column -->
+                <div class="preview-col">
+                    <div class="main-img-wrapper">
+                        <img id="mainGiftImg" src="https://5.imimg.com/data5/AB/WY/MY-14108330/gift-boxes.jpg"
+                            alt="Gift Preview" onerror="handleImageError(this, '🎁')">
+                        <div class="ribbon-overlay" id="ribbonOverlay">
+                            <div class="ribbon-cross-v"></div>
+                            <div class="ribbon-cross-h"></div>
+                            <div class="ribbon-bow">🎀</div>
+                        </div>
+                    </div>
+
+                    <div class="message-card-preview" id="cardPreviewBox">
+                        "Happy Birthday! ❤️"
+                    </div>
+                </div>
+
+                <!-- Right Control Column -->
+                <div class="control-col">
+                    <div class="gift-title-row">
+                        <h2 class="gift-title" id="giftTitle">Gift Box</h2>
+                        <span class="rating-pill">⭐⭐⭐⭐⭐ 4.9</span>
+                    </div>
+
+                    <div class="price-tag">
+                        ₹<span id="giftPrice">499</span>
+                    </div>
+
+                    <!-- Dropdown Select -->
+                    <div class="field-group">
+                        <div class="field-label">
+                            <span>Select Gift Item</span>
+                        </div>
+                        <select class="magic-select" id="productSelect" onchange="onDropdownChange()">
+                            <option value="499|Gift Box|https://5.imimg.com/data5/AB/WY/MY-14108330/gift-boxes.jpg">Gift
+                                Box - ₹499</option>
+                            <option
+                                value="699|Teddy Bear|https://static.semrush.com/contentshake/articles/ai-images/7e8038ec-ae92-4feb-ad57-5ad02103d156/5fc2439b-4f69-4ba6-b6d1-29a0fd8a990f">
+                                Teddy Bear - ₹699</option>
+                            <option
+                                value="1299|Smart Watch|https://percdn.com/f/298540/bzR6WmFuTXorNjQrTm53Z1RvTnE/p/64c1af82acd13-25837-1.webp">
+                                Smart Watch - ₹1,299</option>
+                            <option
+                                value="999|Jewellery|https://gennarojewelers.com/cdn/shop/collections/gifts-collection.png?v=1764691741&width=535">
+                                Jewellery - ₹999</option>
+                            <option
+                                value="399|Chocolate Box|https://www.thanksflowers.com/cdn/shop/files/Chocolates_cec25a4c-1150-471a-8cf9-77ba0dc13652.png?v=1745520405">
+                                Chocolate Box - ₹399</option>
+                            <option
+                                value="599|Flower Bouquet|https://images.unsplash.com/photo-1561181286-d3fee7d55364">
+                                Flower Bouquet - ₹599</option>
+                            <option
+                                value="799|Birthday Gift|https://static.smartgiftsolutions.co.uk/cdn/shop/files/Luxury_Birthday_Gift_Box.jpg">
+                                Birthday Gift - ₹799</option>
+                            <option
+                                value="2499|Camera|https://media.infshop.ie/1941189-large_default/inf-dc218t-4k-dual-lens-touchscreen-hd-camera.webp">
+                                Camera - ₹2,499</option>
+                            <option value="899|Perfume|https://images.unsplash.com/photo-1541643600914-78b084683601">
+                                Perfume - ₹899</option>
+                            <option
+                                value="1599|Classic Watch|https://setare.com/files/2025/10/b7aad762-5ad0-4164-bc73-e1019a16d668.jpg">
+                                Classic Watch - ₹1,599</option>
+                        </select>
+                    </div>
+
+                    <!-- Gift Wrap Selector -->
+                    <div class="field-group">
+                        <div class="field-label">
+                            <span>Choose Gift Wrap Style</span>
+                        </div>
+                        <div class="wrap-grid">
+                            <div class="wrap-card active" onclick="selectWrap(0, 0, this)">
+                                <div class="wrap-icon">📦</div>
+                                <div class="wrap-title">Classic</div>
+                                <div class="wrap-price">Free</div>
+                            </div>
+                            <div class="wrap-card" onclick="selectWrap(99, 1, this)">
+                                <div class="wrap-icon">🎀</div>
+                                <div class="wrap-title">Velvet Ribbon</div>
+                                <div class="wrap-price">+₹99</div>
+                            </div>
+                            <div class="wrap-card" onclick="selectWrap(79, 2, this)">
+                                <div class="wrap-icon">🎉</div>
+                                <div class="wrap-title">Birthday Sparkle</div>
+                                <div class="wrap-price">+₹79</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Message Input -->
+                    <div class="field-group">
+                        <div class="field-label">
+                            <span>Personal Message Card</span>
+                        </div>
+                        <textarea class="magic-textarea" id="messageInput" placeholder="Write your heartfelt message..."
+                            oninput="updateMessagePreview()">Happy Birthday! ❤️</textarea>
+                    </div>
+
+                    <!-- Stepper & Total -->
+                    <div class="stepper-total-row">
+                        <div class="stepper">
+                            <button class="stepper-btn" onclick="updateQty(-1)">−</button>
+                            <span class="stepper-val" id="qtyVal">1</span>
+                            <button class="stepper-btn" onclick="updateQty(1)">+</button>
+                        </div>
+                        <div class="total-box">
+                            <div class="total-label">Total Amount</div>
+                            <div class="total-amount">₹<span id="totalVal">499</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="btn-group">
+                        <button class="btn-wishlist" onclick="addWishlist()">
+                            ❤️ Wishlist
+                        </button>
+                        <button class="btn-order" onclick="triggerOrderMagic()">
+                            ✨ Create & Order Gift
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Order Success Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-box">
+            <div class="modal-icon">🎁✨</div>
+            <div class="modal-title">Gift Created Successfully!</div>
+            <div class="modal-desc" id="modalDetails">
+                Your personalized gift is being magically prepared!
+            </div>
+            <button class="modal-close-btn" onclick="closeModal()">Awesome!</button>
+        </div>
+    </div>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 GIFT ZONE. Developed by ✨ <strong>Team Trios</strong></p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        let currentPrice = 499;
+        let wrapPrice = 0;
+        let quantity = 1;
+        let wishlistCount = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Particle Canvas Background
+            const canvas = document.getElementById('particleCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let w = canvas.width = window.innerWidth;
+                let h = canvas.height = window.innerHeight;
+
+                window.addEventListener('resize', () => {
+                    w = canvas.width = window.innerWidth;
+                    h = canvas.height = window.innerHeight;
+                });
+
+                let particles = Array.from({ length: 60 }, () => ({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 2.2 + 0.6,
+                    dx: (Math.random() - 0.5) * 0.4,
+                    dy: (Math.random() - 0.5) * 0.4,
+                    alpha: Math.random() * 0.7 + 0.3,
+                    color: ['#ffd700', '#ff2a7a', '#8b5cf6', '#06b6d4'][Math.floor(Math.random() * 4)]
+                }));
+
+                function animate() {
+                    ctx.clearRect(0, 0, w, h);
+                    particles.forEach(p => {
+                        ctx.save();
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.restore();
+
+                        p.x += p.dx;
+                        p.y += p.dy;
+                        if (p.x < 0 || p.x > w) p.dx *= -1;
+                        if (p.y < 0 || p.y > h) p.dy *= -1;
+                    });
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+
+            // Read URL Params if item selected from gift.html
+            const urlParams = new URLSearchParams(window.location.search);
+            const itemIdx = urlParams.get('item');
+            if (itemIdx !== null) {
+                const idx = parseInt(itemIdx);
+                if (!isNaN(idx) && idx >= 0 && idx < 10) {
+                    selectCard(idx);
+                }
+            } else {
+                onDropdownChange();
+            }
+            updateMessagePreview();
+        });
+
+        function handleImageError(img, emoji) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+                <rect width="400" height="400" fill="#1e1035"/>
+                <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle" font-size="90">${emoji}</text>
+                <text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#ffd700" font-family="sans-serif" font-weight="bold">Magical Gift</text>
+            </svg>`;
+            img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
+        function selectCard(index) {
+            const selectEl = document.getElementById("productSelect");
+            selectEl.selectedIndex = index;
+            onDropdownChange();
+            document.getElementById("studioPanel").scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function onDropdownChange() {
+            const selectEl = document.getElementById("productSelect");
+            const val = selectEl.value.split("|");
+
+            currentPrice = Number(val[0]);
+            document.getElementById("giftTitle").innerText = val[1];
+            document.getElementById("giftPrice").innerText = currentPrice.toLocaleString('en-IN');
+            document.getElementById("mainGiftImg").src = val[2];
+
+            const cards = document.querySelectorAll('.gift-card');
+            cards.forEach((card, idx) => {
+                if (idx === selectEl.selectedIndex) {
+                    card.classList.add('active-card');
+                } else {
+                    card.classList.remove('active-card');
+                }
+            });
+
+            calculateTotal();
+        }
+
+        function selectWrap(cost, wrapType, el) {
+            wrapPrice = cost;
+            document.querySelectorAll('.wrap-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+
+            const overlay = document.getElementById('ribbonOverlay');
+            if (cost > 0) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+
+            calculateTotal();
+        }
+
+        function updateQty(delta) {
+            if (quantity + delta >= 1) {
+                quantity += delta;
+                document.getElementById('qtyVal').innerText = quantity;
+                calculateTotal();
+            }
+        }
+
+        function calculateTotal() {
+            const total = (currentPrice + wrapPrice) * quantity;
+            document.getElementById('totalVal').innerText = total.toLocaleString('en-IN');
+        }
+
+        function updateMessagePreview() {
+            const msg = document.getElementById('messageInput').value;
+            const previewBox = document.getElementById('cardPreviewBox');
+            previewBox.innerText = msg.trim() ? `"${msg}"` : `"(Your custom message will appear here)"`;
+        }
+
+        function addWishlist() {
+            wishlistCount++;
+            document.getElementById('wishlistCount').innerText = wishlistCount;
+            if (window.confetti) {
+                confetti({
+                    particleCount: 35,
+                    spread: 60,
+                    origin: { y: 0.8 }
+                });
+            }
+        }
+
+        function triggerOrderMagic() {
+            if (window.confetti) {
+                confetti({
+                    particleCount: 130,
+                    spread: 90,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            const giftTitle = document.getElementById('giftTitle').innerText;
+            const totalVal = document.getElementById('totalVal').innerText;
+            const msg = document.getElementById('messageInput').value;
+
+            document.getElementById('modalDetails').innerHTML = `
+                <strong>Gift:</strong> ${giftTitle}<br>
+                <strong>Quantity:</strong> ${quantity}<br>
+                <strong>Total Amount:</strong> ₹${totalVal}<br>
+                <strong>Message:</strong> "${msg}"
+            `;
+
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.remove('active');
+        }
+
+        function filterGifts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.gift-card');
+
+            cards.forEach(card => {
+                const name = card.querySelector('.card-name').innerText.toLowerCase();
+                if (name.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
