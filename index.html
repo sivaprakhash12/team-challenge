@@ -1,1 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 GIFT ZONE — Find the Perfect Gift</title>
+    <meta name="description"
+        content="Find the Perfect Gift for Birthday, Anniversary, Valentine, Marriage, Puberty, and Other Special Occasions.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           GIFT ZONE — Mindblowing Ultra-Luxury & Holographic Design System
+           ========================================================================== */
+
+        :root {
+            --bg-dark: #070510;
+            --bg-card: rgba(22, 16, 48, 0.75);
+            --bg-card-hover: rgba(36, 26, 78, 0.96);
+            --border-glass: rgba(255, 255, 255, 0.16);
+
+            --primary-magenta: #ff2a7a;
+            --primary-violet: #8b5cf6;
+            --primary-cyan: #06b6d4;
+            --accent-gold: #ffd700;
+
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Outfit', sans-serif;
+
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 30px;
+            --radius-xl: 40px;
+
+            --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --shadow-glow: 0 0 50px rgba(139, 92, 246, 0.45);
+            --shadow-gold: 0 0 40px rgba(255, 215, 0, 0.45);
+        }
+
+        /* Reset & Base */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.38) 0%, transparent 45%),
+                radial-gradient(circle at 85% 65%, rgba(255, 42, 122, 0.32) 0%, transparent 45%),
+                radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.28) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ambient Glowing Bokeh Background Orbs */
+        .bokeh-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+            animation: orbFloat 14s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            top: -100px;
+            left: -100px;
+            width: 450px;
+            height: 450px;
+            background: rgba(139, 92, 246, 0.4);
+        }
+
+        .orb-2 {
+            bottom: -150px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 42, 122, 0.35);
+        }
+
+        @keyframes orbFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(60px, 40px) scale(1.15);
+            }
+        }
+
+        /* Particle Canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.85;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, #8b5cf6, #ff2a7a, #06b6d4, #ffd700, #8b5cf6);
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+            color: #fff;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Header Navigation */
+        .navbar-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7, 5, 16, 0.88);
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-icon-wrap {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(255, 42, 122, 0.35), rgba(139, 92, 246, 0.45));
+            border-radius: 14px;
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo:hover .logo-icon-wrap {
+            transform: scale(1.1) rotate(6deg);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        .logo-emoji {
+            font-size: 1.7rem;
+            animation: floatEmoji 3s ease-in-out infinite;
+        }
+
+        @keyframes floatEmoji {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-4px) rotate(6deg);
+            }
+        }
+
+        .brand-name {
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #fff, var(--accent-gold), #ff758c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-tagline {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Search Box */
+        .nav-search-container {
+            position: relative;
+            flex: 1;
+            max-width: 380px;
+        }
+
+        .search-box-wrapper {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-xl);
+            padding: 8px 18px;
+            transition: var(--transition-normal);
+        }
+
+        .search-box-wrapper:focus-within {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.35);
+        }
+
+        .search-icon {
+            color: var(--accent-gold);
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .search-box-wrapper input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+        }
+
+        .search-box-wrapper input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Nav Menu Links */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.98rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: var(--radius-xl);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-gold);
+            background: rgba(255, 215, 0, 0.12);
+            border-color: rgba(255, 215, 0, 0.4);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            border: none;
+            outline: none;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--accent-gold), #ff8c00);
+            color: #0c0919;
+            font-weight: 800;
+            box-shadow: var(--shadow-gold);
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 45px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 60px 0 70px;
+            position: relative;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 215, 0, 0.12);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 7px 18px;
+            border-radius: var(--radius-xl);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.4rem;
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        /* Metallic Gold Shimmer Effect */
+        .gradient-text {
+            background: linear-gradient(120deg, var(--accent-gold) 0%, #ffffff 40%, var(--accent-gold) 60%, var(--primary-magenta) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: goldShine 5s linear infinite;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        @keyframes goldShine {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .hero-description {
+            font-size: 1.12rem;
+            color: var(--text-secondary);
+            margin-bottom: 28px;
+            max-width: 530px;
+        }
+
+        .hero-card-banner {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            box-shadow: var(--shadow-glow);
+            text-align: center;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-card-banner:hover {
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        .hero-banner-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            display: block;
+            object-fit: cover;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: floatRibbon 4s ease-in-out infinite;
+        }
+
+        @keyframes floatRibbon {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(10deg);
+            }
+        }
+
+        /* --- OCCASION SELECTION SECTION --- */
+        .occasions-section {
+            padding: 60px 0 80px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-tag {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .section-tag:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 2-Column Grid with Rainbow Glassmorphism & 3D Holographic Tilt */
+        .occasion-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 980px;
+            margin: 0 auto 50px;
+            perspective: 1200px;
+        }
+
+        .occasion-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            overflow: hidden;
+            outline: none;
+            transform-style: preserve-3d;
+        }
+
+        /* Rainbow Shimmer Border on Hover */
+        .occasion-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: var(--radius-lg);
+            padding: 2px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--primary-magenta), var(--primary-cyan), var(--primary-violet));
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        .occasion-card:hover::before {
+            opacity: 1;
+        }
+
+        .occasion-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            background: var(--bg-card-hover);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.45), 0 0 35px rgba(255, 215, 0, 0.35);
+        }
+
+        /* Floating Animated Category Badge (Top Right) */
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            right: 18px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: var(--accent-gold);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .icon-box {
+            position: relative;
+            width: 82px;
+            height: 82px;
+            min-width: 82px;
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-glass);
+            transition: var(--transition-bounce);
+        }
+
+        .icon-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 30px;
+            border: 2px dashed rgba(255, 215, 0, 0.4);
+            animation: spinRing 12s linear infinite;
+        }
+
+        @keyframes spinRing {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .occasion-emoji {
+            font-size: 2.9rem;
+            z-index: 2;
+            transition: var(--transition-bounce);
+        }
+
+        .occasion-card:hover .occasion-emoji {
+            transform: scale(1.3) rotate(-10deg);
+        }
+
+        .card-details {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .occasion-title {
+            font-family: var(--font-heading);
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .occasion-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .gift-count-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 14px;
+        }
+
+        /* Central Explore Gifts Action Button */
+        .explore-action-area {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn-explore-gifts {
+            padding: 20px 56px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            border-radius: 60px;
+            background: linear-gradient(135deg, var(--accent-gold), #ff6b00, var(--primary-magenta));
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            color: #0c0919;
+            box-shadow: 0 0 45px rgba(255, 215, 0, 0.55);
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition-bounce);
+        }
+
+        .btn-explore-gifts:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 65px rgba(255, 215, 0, 0.85);
+        }
+
+        /* --- 3D UNBOXING GIFT MODAL --- */
+        .gift-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(5, 3, 15, 0.94);
+            backdrop-filter: blur(30px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .gift-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .gift-modal-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(28, 20, 60, 0.98), rgba(16, 12, 38, 0.98));
+            border: 2px solid var(--accent-gold);
+            border-radius: var(--radius-xl);
+            padding: 45px 35px;
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 90px rgba(255, 215, 0, 0.65);
+            transform: scale(0.7) translateY(40px);
+            transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .gift-modal-overlay.active .gift-modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.25s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .close-modal-btn:hover {
+            background: var(--primary-magenta);
+            transform: rotate(90deg);
+        }
+
+        /* 3D GIFT BOX STAGE */
+        .gift-box-3d-stage {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            perspective: 1000px;
+        }
+
+        .box-rays {
+            position: absolute;
+            inset: -80px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.9) 0%, rgba(255, 42, 122, 0.5) 35%, transparent 80%);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.1);
+            transition: all 0.8s ease;
+            pointer-events: none;
+        }
+
+        .gift-box-3d-stage.open .box-rays {
+            opacity: 1;
+            transform: scale(1.6);
+            animation: spinRays 10s linear infinite;
+        }
+
+        @keyframes spinRays {
+            100% {
+                transform: scale(1.6) rotate(360deg);
+            }
+        }
+
+        .gift-box-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: bounceFloat 3.5s ease-in-out infinite;
+        }
+
+        @keyframes bounceFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateY(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotateY(12deg);
+            }
+        }
+
+        .box-lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55px;
+            background: linear-gradient(135deg, #ff2a7a, #8b5cf6);
+            border: 2px solid var(--accent-gold);
+            border-radius: 18px 18px 6px 6px;
+            z-index: 5;
+            box-shadow: 0 5px 30px rgba(255, 42, 122, 0.7);
+            transform-origin: top center;
+            transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box-lid-ribbon {
+            font-size: 2.6rem;
+            filter: drop-shadow(0 0 14px rgba(255, 215, 0, 1));
+        }
+
+        .gift-box-3d-stage.open .box-lid {
+            transform: translateY(-110px) rotateX(-120deg) rotateZ(20deg) scale(0.85);
+            opacity: 0.9;
+        }
+
+        .box-body {
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            width: 90%;
+            height: 130px;
+            background: linear-gradient(135deg, #1d1544, #3a2878);
+            border: 2px solid var(--accent-gold);
+            border-radius: 8px 8px 24px 24px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95), inset 0 0 25px rgba(255, 215, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .box-body-ribbon {
+            position: absolute;
+            width: 28px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-gold), #ff8c00);
+            box-shadow: 0 0 20px var(--accent-gold);
+        }
+
+        .box-interior-sparkle {
+            font-size: 3.5rem;
+            z-index: 2;
+            transition: transform 0.6s ease;
+        }
+
+        .gift-box-3d-stage.open .box-interior-sparkle {
+            transform: translateY(-30px) scale(1.3);
+            animation: floatGiftIcon 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatGiftIcon {
+            from {
+                transform: translateY(-30px) scale(1.3);
+            }
+
+            to {
+                transform: translateY(-40px) scale(1.4);
+            }
+        }
+
+        .unboxed-content {
+            opacity: 0;
+            transform: translateY(25px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+        }
+
+        .gift-modal-overlay.active .unboxed-content.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-occasion-title {
+            font-family: var(--font-heading);
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #fff, var(--accent-gold), #ff758c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .unboxed-gift-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--accent-gold);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            margin: 22px 0;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            text-align: left;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
+        }
+
+        .unboxed-gift-img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .unboxed-gift-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .unboxed-gift-price {
+            font-size: 1.35rem;
+            color: var(--accent-gold);
+            font-weight: 900;
+        }
+
+        .claim-gift-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.15rem;
+            font-weight: 900;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--accent-gold), #ff8c00, var(--primary-magenta));
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            color: #0c0919;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.6);
+            transition: var(--transition-bounce);
+        }
+
+        .claim-gift-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.85);
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: auto;
+            background: #040309;
+            border-top: 1px solid var(--border-glass);
+            padding: 35px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .occasion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin: 0 auto 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-menu,
+            .nav-search-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient Glowing Bokeh Background Orbs -->
+    <div class="bokeh-orb orb-1"></div>
+    <div class="bokeh-orb orb-2"></div>
+
+    <!-- Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <span>✨ <strong>Welcome to GIFT ZONE:</strong> Express Midnight Delivery & Free Luxury Gift Wrapping!</span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="navbar-header" id="navbarHeader">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo" id="brandLogoBtn">
+                <div class="logo-icon-wrap">
+                    <span class="logo-emoji">🎁</span>
+                </div>
+                <div>
+                    <span class="brand-name">GIFT ZONE</span>
+                    <span class="brand-tagline">PERFECT GIFTS, EVERY TIME</span>
+                </div>
+            </a>
+
+            <!-- Search Box -->
+            <div class="nav-search-container">
+                <div class="search-box-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search Birthday, Wedding, Watch, Roses..."
+                        autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active" id="navHome"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="gift.html" class="nav-link" id="navGift"><i class="fa-solid fa-gift"></i> Gift</a>
+                <a href="details.html" class="nav-link" id="navDetails"><i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Gift Details</a>
+            </nav>
+
+            <a href="#occasions" class="btn btn-gradient" id="navExploreBtn">
+                <span>Explore Gifts</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div>
+                <div class="hero-badge">
+                    <span>✨ No. 1 Gift Destination</span>
+                </div>
+                <h1 class="hero-title">
+                    Find the <span class="gradient-text" id="findPerfectTitle">Perfect Gift</span> <br>
+                    For Every Celebration
+                </h1>
+                <p class="hero-description">
+                    Step into the Gift Zone! Click on any occasion card below to unbox your magical 3D surprise gift
+                    box.
+                </p>
+                <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                    <a href="#occasions" class="btn btn-gradient" id="heroSelectBtn">
+                        <i class="fa-solid fa-gift"></i> Select Occasion Below
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-card-banner">
+                <span class="floating-emoji" style="top:-18px; left:-18px;">🎀</span>
+                <span class="floating-emoji" style="bottom:-18px; right:-18px;">✨</span>
+                <img src="images/hero_banner.png" alt="Gift Zone Banner" class="hero-banner-img"
+                    onerror="this.src='https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w=800'">
+            </div>
+        </div>
+    </section>
+
+    <!-- OCCASION SELECTION SECTION -->
+    <section class="occasions-section" id="occasions">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag" id="sectionTag">🎁 GIFT ZONE</div>
+                <h2 class="section-title" id="mainFindPerfectHeader">Find the Perfect Gift</h2>
+                <p class="section-subtitle">Click on any occasion card below to unbox your surprise gift box!</p>
+            </div>
+
+            <!-- OCCASION CARDS GRID (6 Cards with Holographic & Badges) -->
+            <div class="occasion-grid" id="occasionGrid">
+
+                <!-- 1. Birthday Card -->
+                <div class="occasion-card" data-occasion="birthday" data-title="Birthday Surprise Box"
+                    data-gift="Customized Star Map Acrylic Frame" data-price="$45"
+                    data-img="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w=500" tabindex="0">
+                    <span class="card-badge">🔥 Popular</span>
+                    <div class="icon-box"
+                        style="background: rgba(255, 42, 122, 0.22); border-color: rgba(255, 42, 122, 0.4);">
+                        <div class="icon-ring"></div>
+                        <span class="occasion-emoji">🎂</span>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="occasion-title">Birthday</h3>
+                        <p class="occasion-desc">Surprise cakes, personalized photo frames, gadgets & party hampers.</p>
+                        <span class="gift-count-tag"><i class="fa-solid fa-box-open"></i> Tap to Unbox Gift</span>
+                    </div>
+                </div>
+
+                <!-- 2. Anniversary Card -->
+                <div class="occasion-card" data-occasion="anniversary" data-title="Anniversary Romance Box"
+                    data-gift="Royal 18k Gold Heart Pendant" data-price="$185"
+                    data-img="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=500" tabindex="0">
+                    <span class="card-badge">⭐ Luxury</span>
+                    <div class="icon-box"
+                        style="background: rgba(255, 215, 0, 0.22); border-color: rgba(255, 215, 0, 0.4);">
+                        <div class="icon-ring"></div>
+                        <span class="occasion-emoji">💍</span>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="occasion-title">Anniversary</h3>
+                        <p class="occasion-desc">Timeless gold jewelry, couple watch sets & romantic dinner sets.</p>
+                        <span class="gift-count-tag"><i class="fa-solid fa-box-open"></i> Tap to Unbox Gift</span>
+                    </div>
+                </div>
+
+                <!-- 3. Valentine Card -->
+                <div class="occasion-card" data-occasion="valentine" data-title="Valentine Love Box"
+                    data-gift="Enchanted Rose LED Glass Dome" data-price="$65"
+                    data-img="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500" tabindex="0">
+                    <span class="card-badge">💖 Romantic</span>
+                    <div class="icon-box"
+                        style="background: rgba(244, 63, 94, 0.22); border-color: rgba(244, 63, 94, 0.4);">
+                        <div class="icon-ring"></div>
+                        <span class="occasion-emoji">❤️</span>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="occasion-title">Valentine</h3>
+                        <p class="occasion-desc">Everlasting roses, love letters, luxury chocolates & heart gifts.</p>
+                        <span class="gift-count-tag"><i class="fa-solid fa-box-open"></i> Tap to Unbox Gift</span>
+                    </div>
+                </div>
+
+                <!-- 4. Marriage Card -->
+                <div class="occasion-card" data-occasion="marriage" data-title="Marriage Celebration Box"
+                    data-gift="His & Hers Engraved Luxury Watch Set" data-price="$240"
+                    data-img="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=500" tabindex="0">
+                    <span class="card-badge">💍 Grand</span>
+                    <div class="icon-box"
+                        style="background: rgba(6, 182, 212, 0.22); border-color: rgba(6, 182, 212, 0.4);">
+                        <div class="icon-ring"></div>
+                        <span class="occasion-emoji">💒</span>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="occasion-title">Marriage</h3>
+                        <p class="occasion-desc">Grand wedding hampers, home decor & customized couple star maps.</p>
+                        <span class="gift-count-tag"><i class="fa-solid fa-box-open"></i> Tap to Unbox Gift</span>
+                    </div>
+                </div>
+
+                <!-- 5. Puberty Card -->
+                <div class="occasion-card" data-occasion="puberty" data-title="Puberty Milestone Box"
+                    data-gift="Traditional Silk Keepsake Box" data-price="$110"
+                    data-img="https://images.unsplash.com/photo-1549465220-1a8b9238cd43?q=80&w=500" tabindex="0">
+                    <span class="card-badge">🎓 Milestone</span>
+                    <div class="icon-box"
+                        style="background: rgba(168, 85, 247, 0.22); border-color: rgba(168, 85, 247, 0.4);">
+                        <div class="icon-ring"></div>
+                        <span class="occasion-emoji">🎓</span>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="occasion-title">Puberty</h3>
+                        <p class="occasion-desc">Traditional silk keepsakes, auspicious gold brooches & milestone boxes.
+                        </p>
+                        <span class="gift-count-tag"><i class="fa-solid fa-box-open"></i> Tap to Unbox Gift</span>
+                    </div>
+                </div>
+
+                <!-- 6. Other Card -->
+                <div class="occasion-card" data-occasion="other" data-title="Festive Celebration Box"
+                    data-gift="Gourmet Wine & Truffle Hamper" data-price="$85"
+                    data-img="https://images.unsplash.com/photo-1543083477-4f785aeafaa9?q=80&w=500" tabindex="0">
+                    <span class="card-badge">🎉 Festive</span>
+                    <div class="icon-box"
+                        style="background: rgba(236, 72, 153, 0.22); border-color: rgba(236, 72, 153, 0.4);">
+                        <div class="icon-ring"></div>
+                        <span class="occasion-emoji">🎉</span>
+                    </div>
+                    <div class="card-details">
+                        <h3 class="occasion-title">Other</h3>
+                        <p class="occasion-desc">Festivals, graduations, promotions, housewarming & corporate gifts.</p>
+                        <span class="gift-count-tag"><i class="fa-solid fa-box-open"></i> Tap to Unbox Gift</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CENTRAL EXPLORE GIFTS BUTTON -->
+            <div class="explore-action-area">
+                <button class="btn-explore-gifts" id="exploreBtn">
+                    <span>✨</span>
+                    <span>[ Explore Gifts ]</span>
+                    <span>🎁</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAGICAL 3D UNBOXING GIFT MODAL -->
+    <div class="gift-modal-overlay" id="unboxingModal">
+        <div class="gift-modal-card">
+            <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+
+            <div class="gift-box-3d-stage" id="giftBoxStage">
+                <div class="box-rays"></div>
+                <div class="gift-box-wrapper">
+                    <div class="box-lid">
+                        <span class="box-lid-ribbon">🎀</span>
+                    </div>
+                    <div class="box-body">
+                        <div class="box-body-ribbon"></div>
+                        <span class="box-interior-sparkle" id="boxEmoji">🎁</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unboxed Content -->
+            <div class="unboxed-content" id="unboxedContent">
+                <h3 class="modal-occasion-title" id="modalTitle">Birthday Surprise Box</h3>
+                <p style="color:var(--text-secondary); font-size:0.95rem;">✨ Magic Revealed! Your handpicked gift is
+                    ready.</p>
+
+                <div class="unboxed-gift-card">
+                    <img src="" alt="Gift" id="modalGiftImg" class="unboxed-gift-img">
+                    <div>
+                        <div class="unboxed-gift-name" id="modalGiftName">Customized Star Map Frame</div>
+                        <div class="unboxed-gift-price" id="modalGiftPrice">$45</div>
+                    </div>
+                </div>
+
+                <button class="claim-gift-btn" onclick="alert('🎉 Gift Claimed! Opening checkout...')">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Claim Your Gift Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 GIFT ZONE. Developed by ✨ <strong>Team Trios</strong></p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. Canvas Particle Background ---
+            const canvas = document.getElementById('particleCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let w = canvas.width = window.innerWidth;
+                let h = canvas.height = window.innerHeight;
+
+                window.addEventListener('resize', () => {
+                    w = canvas.width = window.innerWidth;
+                    h = canvas.height = window.innerHeight;
+                });
+
+                let particles = Array.from({ length: 65 }, () => ({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 2.2 + 0.6,
+                    dx: (Math.random() - 0.5) * 0.4,
+                    dy: (Math.random() - 0.5) * 0.4,
+                    alpha: Math.random() * 0.7 + 0.3,
+                    color: ['#ffd700', '#ff2a7a', '#8b5cf6', '#06b6d4'][Math.floor(Math.random() * 4)]
+                }));
+
+                function animate() {
+                    ctx.clearRect(0, 0, w, h);
+                    particles.forEach(p => {
+                        ctx.save();
+                        ctx.globalAlpha = p.alpha;
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.restore();
+
+                        p.x += p.dx;
+                        p.y += p.dy;
+                        if (p.x < 0 || p.x > w) p.dx *= -1;
+                        if (p.y < 0 || p.y > h) p.dy *= -1;
+                    });
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+
+            // --- 2. 3D Holographic Mouse Tilt on Cards ---
+            const occasionCards = document.querySelectorAll('.occasion-card');
+            occasionCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    const rotateX = (-y / rect.height) * 16;
+                    const rotateY = (x / rect.width) * 16;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0deg) scale(1)`;
+                });
+            });
+
+            // --- 3. Interactive Sparkle Mouse Trail ---
+            document.addEventListener('mousemove', (e) => {
+                if (Math.random() > 0.75) return;
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = `${e.clientX}px`;
+                sparkle.style.top = `${e.clientY}px`;
+                sparkle.style.width = '6px';
+                sparkle.style.height = '6px';
+                sparkle.style.background = ['#ffd700', '#ff2a7a', '#8b5cf6'][Math.floor(Math.random() * 3)];
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '9999';
+
+                const destX = (Math.random() - 0.5) * 35;
+                const destY = (Math.random() - 0.5) * 35;
+
+                sparkle.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${destX}px, ${destY}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 600 + Math.random() * 200,
+                    easing: 'ease-out'
+                }).onfinish = () => sparkle.remove();
+
+                document.body.appendChild(sparkle);
+            });
+
+            // --- 4. Header & Title Click Triggers ---
+            const clickItems = [
+                document.getElementById('navHome'),
+                document.getElementById('navGift'),
+                document.getElementById('navDetails'),
+                document.getElementById('brandLogoBtn'),
+                document.getElementById('navExploreBtn'),
+                document.getElementById('mainFindPerfectHeader'),
+                document.getElementById('findPerfectTitle')
+            ];
+
+            clickItems.forEach(item => {
+                if (!item) return;
+                item.addEventListener('click', (e) => {
+                    playMelodySequence([659, 880]);
+                    triggerRippleEffect(e.clientX, e.clientY);
+                });
+            });
+
+            // --- 5. 3D Unboxing Engine ---
+            const modal = document.getElementById('unboxingModal');
+            const boxStage = document.getElementById('giftBoxStage');
+            const unboxedContent = document.getElementById('unboxedContent');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const boxEmoji = document.getElementById('boxEmoji');
+
+            function openGiftBoxModal(title, giftName, price, img, emoji = '🎁') {
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalGiftName').textContent = giftName;
+                document.getElementById('modalGiftPrice').textContent = price;
+                document.getElementById('modalGiftImg').src = img;
+                boxEmoji.textContent = emoji;
+
+                boxStage.classList.remove('open');
+                unboxedContent.classList.remove('show');
+                modal.classList.add('active');
+
+                playMelodySequence([523, 659]);
+
+                setTimeout(() => {
+                    boxStage.classList.add('open');
+                    playMelodySequence([784, 1046]);
+                    triggerSparkleBurstAtPoint(window.innerWidth / 2, window.innerHeight / 2);
+
+                    setTimeout(() => {
+                        unboxedContent.classList.add('show');
+                    }, 450);
+                }, 400);
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Cards Click Trigger
+            occasionCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const title = card.getAttribute('data-title');
+                    const giftName = card.getAttribute('data-gift');
+                    const price = card.getAttribute('data-price');
+                    const img = card.getAttribute('data-img');
+                    const emoji = card.querySelector('.occasion-emoji').textContent;
+
+                    triggerRippleEffect(e.clientX, e.clientY);
+                    openGiftBoxModal(title, giftName, price, img, emoji);
+                });
+            });
+
+            // Explore Button Trigger
+            const exploreBtn = document.getElementById('exploreBtn');
+            if (exploreBtn) {
+                exploreBtn.addEventListener('click', (e) => {
+                    triggerRippleEffect(e.clientX, e.clientY);
+                    openGiftBoxModal('Exclusive Gift Zone Box', 'Royal 18k Gold Heart Pendant', '$185', 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=500', '✨');
+                });
+            }
+
+            // Search Box Filter
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    occasionCards.forEach(card => {
+                        const title = card.querySelector('.occasion-title').textContent.toLowerCase();
+                        const desc = card.querySelector('.occasion-desc').textContent.toLowerCase();
+                        if (!query || title.includes(query) || desc.includes(query)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Ripple FX
+            function triggerRippleEffect(x, y) {
+                const ripple = document.createElement('div');
+                ripple.style.position = 'fixed';
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.background = 'radial-gradient(circle, rgba(255,215,0,0.8) 0%, rgba(255,42,122,0.4) 50%, transparent 70%)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.zIndex = '9998';
+                ripple.style.transform = 'translate(-50%, -50%)';
+
+                ripple.animate([
+                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                    { transform: 'translate(-50%, -50%) scale(25)', opacity: 0 }
+                ], {
+                    duration: 750,
+                    easing: 'ease-out'
+                }).onfinish = () => ripple.remove();
+
+                document.body.appendChild(ripple);
+            }
+
+            // Sparkle Particle Burst
+            function triggerSparkleBurstAtPoint(x, y) {
+                const emojis = ['✨', '🌟', '💖', '🎉', '🎀'];
+                for (let i = 0; i < 28; i++) {
+                    const p = document.createElement('div');
+                    p.style.position = 'fixed';
+                    p.style.left = `${x}px`;
+                    p.style.top = `${y}px`;
+                    p.style.pointerEvents = 'none';
+                    p.style.zIndex = '9999';
+
+                    if (i % 2 === 0) {
+                        p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                        p.style.fontSize = '1.3rem';
+                    } else {
+                        p.style.width = '9px';
+                        p.style.height = '9px';
+                        p.style.background = ['#ffd700', '#ff2a7a', '#8b5cf6', '#06b6d4'][Math.floor(Math.random() * 4)];
+                        p.style.borderRadius = '50%';
+                        p.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.8)';
+                    }
+
+                    const angle = Math.random() * Math.PI * 2;
+                    const dist = Math.random() * 130 + 40;
+                    const destX = Math.cos(angle) * dist;
+                    const destY = Math.sin(angle) * dist;
+
+                    p.animate([
+                        { transform: '-50%, -50% scale(0.5)', opacity: 1 },
+                        { transform: `translate(${destX}px, ${destY}px) scale(1.4)`, opacity: 0 }
+                    ], {
+                        duration: 850 + Math.random() * 400,
+                        easing: 'cubic-bezier(0,0,0.2,1)'
+                    }).onfinish = () => p.remove();
+
+                    document.body.appendChild(p);
+                }
+            }
+
+            // Audio Helper
+            function playMelodySequence(freqs) {
+                try {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (!AudioCtx) return;
+                    const ctx = new AudioCtx();
+                    freqs.forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.12);
+                        gain.gain.setValueAtTime(0.08, ctx.currentTime + idx * 0.12);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.12 + 0.25);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(ctx.currentTime + idx * 0.12);
+                        osc.stop(ctx.currentTime + idx * 0.12 + 0.25);
+                    });
+                } catch (e) { }
+            }
+        });
+    </script>
+</body>
+
+</html>
